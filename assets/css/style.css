@@ -158,11 +158,49 @@ main {
     color: var(--text-color);
 }
 
+.journey h3 {
+    font-size: 1.375rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
 .journey p {
     font-size: 1.125rem;
     margin-bottom: 1.5rem;
     line-height: 1.8;
     color: var(--text-color);
+}
+
+.journey ul {
+    list-style: none;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+}
+
+.journey li {
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+.journey li strong {
+    font-weight: 800;
+}
+
+.journey a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    border: 4px solid transparent;
+}
+
+
+.journey a:hover,
+.journey a:focus {
+    text-decoration: none;
+    border-color: var(--primary-color);
+    background-color: var(--focus-primary);
 }
 
 footer {
@@ -176,7 +214,7 @@ footer p {
     font-size: 0.875rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 
     .hero {
         flex-direction: column;
@@ -185,6 +223,8 @@ footer p {
         flex-wrap: wrap;
         justify-content: center;
         gap: 1rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .nav-links a {
