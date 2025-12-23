@@ -11,9 +11,14 @@
 
 <body>
     <header>
-        <nav aria-label="Main navigation">
-            <h1>Accessible by Chris</h1>
-            <ul class="nav-links">
+        <nav aria-label="Main navigation" class="main-nav">
+            <div class="nav-top">
+                <h1>Accessible by Chris</h1>
+                <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Menu">
+                    <span class="hamburger" aria-hidden="true"></span>
+                </button>
+            </div>
+            <ul class="nav-links" id="primary-navigation">
                 <li><a href="/">Home</a></li>
                 <li><a href="/writing/" aria-current="page">Writing</a></li>
                 <li><a href="/about/">About Me</a></li>

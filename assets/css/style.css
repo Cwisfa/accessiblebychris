@@ -40,10 +40,12 @@ header nav {
     max-width: var(--max-width);
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    /* establish positioning context for the mobile dropdown */
+    position: relative;
 }
 
 nav h1 {
@@ -74,7 +76,49 @@ header h1 {
     font-weight: 500;
     padding: 0.5rem 1rem;
     border: 4px solid transparent;
+    white-space: nowrap;
 }
+
+/* Utility: visually hidden but accessible to screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: 0;
+    padding: 0.25rem;
+    cursor: pointer;
+}
+
+.hamburger {
+    display: inline-block;
+    width: 22px;
+    height: 2px;
+    background: var(--primary-color);
+    position: relative;
+    vertical-align: middle;
+}
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 2px;
+    background: var(--primary-color);
+}
+.hamburger::before { top: -6px; }
+.hamburger::after { top: 6px; }
 
 .nav-links a:hover,
 .nav-links a:focus {
@@ -215,26 +259,68 @@ footer p {
 }
 
 @media (max-width: 700px) {
-
     .hero {
         flex-direction: column;
+        margin: 0;
+        padding: 0;
     }
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
+
+    .nav-top {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         gap: 1rem;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .nav-top h1 {
+        text-align: left;
+        font-size: 1.25rem;
+        margin: 0;
+        padding-left: 0.25rem;
+    }
+
+    .nav-top .nav-toggle {
+        display: block;
+        position: static;
+        margin: 0;
+    }
+
+    .main-nav.menu-open {
+        display: block;
+    }
+
+    .main-nav.menu-open .nav-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        display: none !important;
+        position: static;
+        width: 100%;
+        gap: 0.5rem;
+        padding: 0.5rem 0 1rem 0;
+        margin-top: 0.5rem;
+    }
+
+    .nav-links.open {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-links li { margin: 0; }
+    .nav-links a { display: inline-block; padding: 0.5rem 0.75rem; font-size: 1rem; }
 
     .nav-links a {
         white-space: nowrap;
         font-size: 1rem;
     }
-}
 
-@media (min-width: 768px) {
-    header {
+        header {
         padding: 1.5rem 2rem;
     }
 
@@ -243,6 +329,6 @@ footer p {
     }
 
     main {
-        padding: 4rem 2rem;
+        padding: 2rem 2rem;
     }
 }
