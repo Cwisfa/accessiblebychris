@@ -1,3 +1,5 @@
+/* Root */
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 * {
@@ -7,11 +9,11 @@
 }
 
 :root {
-    --primary-color: black;
-    --text-color: black;
-    --bg-color: #ffffff;
-    --focus-primary: #CC5500;
-    --text-on-focus: #ffffff;
+    --primary-color: #ff48b6; /* Accent (links, borders) */
+    --text-color: #E4E4E4;    /* Primary text */
+    --bg-color: #2C2C2C;      /* Background */
+    --focus-primary: #A8DADC; /* Accent for focus/hover */
+    --text-on-focus: #2C2C2C; /* Text color when on accent background */
     --max-width: 1200px;
     --spacing-unit: 1rem;
 }
@@ -31,9 +33,14 @@ body {
     flex-direction: column;
 }
 
+html, body, header, main, footer, .nav-links a {
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+/* All Styles */
+
 header {
-    border-bottom: 4px solid var(--primary-color);
-    padding: 1rem;
+    background-color: var(--primary-color);
 }
 
 header nav {
@@ -41,15 +48,16 @@ header nav {
     margin: 0 auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    /* establish positioning context for the mobile dropdown */
     position: relative;
 }
 
-nav h1 {
-    color: var(--primary-color);
+.nav-top img {
+    height: 150px;
+    max-height: 150px;
+    width: auto;
+    display: block;
 }
 
 header h1 {
@@ -67,16 +75,22 @@ header h1 {
     margin: 0;
     padding: 0;
     justify-content: center;
+    align-items: center;
 }
 
 .nav-links a {
-    color: var(--text-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
     text-decoration: none;
     font-size: 1.125rem;
     font-weight: 500;
     padding: 0.5rem 1rem;
     border: 4px solid transparent;
+    color: var(--text-on-focus);
     white-space: nowrap;
+    cursor: pointer;
 }
 
 /* Utility: visually hidden but accessible to screen readers */
@@ -104,7 +118,7 @@ header h1 {
     display: inline-block;
     width: 22px;
     height: 2px;
-    background: var(--primary-color);
+    background: var(--bg-color);
     position: relative;
     vertical-align: middle;
 }
@@ -115,21 +129,24 @@ header h1 {
     left: 0;
     width: 22px;
     height: 2px;
-    background: var(--primary-color);
+    background: var(--bg-color);
 }
 .hamburger::before { top: -6px; }
 .hamburger::after { top: 6px; }
 
 .nav-links a:hover,
 .nav-links a:focus {
-    border-color: var(--primary-color);
-    background-color: var(--focus-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--text-on-focus);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 3px;
 }
 
 .nav-links a[aria-current="page"] {
-    
-    border-color: var(--primary-color);
-    background-color: var(--focus-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--text-on-focus);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 3px;
 }
 
 main {
@@ -165,10 +182,10 @@ main {
     max-width: 600px;
 }
 
-.hero-content h2 {
+.hero-content h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    color: var(--text-color);
+    color: var(--primary-color);
 }
 
 .hero-content p {
@@ -188,7 +205,8 @@ main {
 .hero-content a:focus {
     text-decoration: none;
     border-color: var(--primary-color);
-    background-color: var(--focus-primary);
+    background-color: var(--primary-color);
+    color: var(--bg-color);
 }
 
 .journey {
@@ -196,17 +214,10 @@ main {
     margin: 0 auto;
 }
 
-.journey h2 {
+.journey h1 {
     font-size: 2rem;
     margin-bottom: 2rem;
-    color: var(--text-color);
-}
-
-.journey h3 {
-    font-size: 1.375rem;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
+    color: var(--primary-color);
 }
 
 .journey p {
@@ -244,11 +255,11 @@ main {
 .journey a:focus {
     text-decoration: none;
     border-color: var(--primary-color);
-    background-color: var(--focus-primary);
+    background-color: var(--primary-color);
+    color: var(--bg-color);
 }
 
 footer {
-    border-top: 4px solid var(--primary-color);
     padding: 2rem 1rem;
     text-align: center;
 }
@@ -258,7 +269,7 @@ footer p {
     font-size: 0.875rem;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .hero {
         flex-direction: column;
         margin: 0;
@@ -278,6 +289,13 @@ footer p {
         font-size: 1.25rem;
         margin: 0;
         padding-left: 0.25rem;
+    }
+
+    .nav-top img {
+        height: 120px;
+        max-height: 120px;
+        width: auto;
+        display: block;
     }
 
     .nav-top .nav-toggle {
@@ -321,7 +339,7 @@ footer p {
     }
 
         header {
-        padding: 1.5rem 2rem;
+        padding: 1rem;
     }
 
     header h1 {
